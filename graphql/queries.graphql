@@ -1,0 +1,12 @@
+query Tickets {
+  tickets {
+    created_at
+    entries_left
+    id
+    is_inside
+    last_date_used
+    persons
+    ticket_type
+    updated_at
+  }
+}
