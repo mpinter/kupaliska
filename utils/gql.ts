@@ -1,9 +1,6 @@
 import { GraphQLClient } from 'graphql-request'
 import { getSdk } from './graphqlSdk'
 
-console.log('--------')
-console.log(process.env.HASURA_ADMIN_SECRET)
-
 // currently intended to be used from server-side only
 // but nothing prevents us from using it client-side once user level role exists
 export const client = getSdk(

@@ -10,3 +10,21 @@ query Tickets {
     updated_at
   }
 }
+
+query Ticket($id: uuid!) {
+  tickets_by_pk(id: $id) {
+    created_at
+    email
+    entries_left
+    id
+    is_inside
+    last_date_used
+    payment_reference
+    persons
+    phone
+    ticket_type
+    updated_at
+    user_id
+    was_paid
+  }
+}

@@ -1,0 +1,13 @@
+mutation InsertTicket($phone: String = "", $email: String!, $persons: Int!) {
+  insert_tickets(objects: { phone: $phone, email: $email, persons: $persons }) {
+    returning {
+      id
+    }
+  }
+}
+
+mutation PayForTicket($id: uuid!) {
+  update_tickets_by_pk(pk_columns: { id: $id }, _set: { was_paid: true }) {
+    was_paid
+  }
+}

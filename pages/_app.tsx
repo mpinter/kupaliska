@@ -4,14 +4,11 @@ import Link from 'next/link'
 export const App = ({ Component, pageProps }): JSX.Element => (
   <div>
     <Head>
-      <title>Create Next App</title>
+      <title>Kupaliska</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <div className="header">
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/really/deep/about">Deeper About</Link>
-      <Link href="/blog">Blog Index</Link>
+      <img src="/ba-logo-white.svg" className="logo" />
     </div>
     <div className="container">
       <Component {...pageProps} />
@@ -28,9 +25,16 @@ export const App = ({ Component, pageProps }): JSX.Element => (
     <style jsx>
       {`
         .header {
+          width: 100%;
+          height: 20px;
+          padding: 10px;
+          background-color: red;
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
+        }
+
+        .logo {
+          height: 100%;
         }
 
         .container {
@@ -59,10 +63,6 @@ export const App = ({ Component, pageProps }): JSX.Element => (
           justify-content: center;
           align-items: center;
         }
-
-        .logo {
-          height: 1em;
-        }
       `}
     </style>
     <style jsx global>{`
@@ -72,10 +72,6 @@ export const App = ({ Component, pageProps }): JSX.Element => (
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
           Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
       }
     `}</style>
   </div>
