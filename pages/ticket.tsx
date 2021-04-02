@@ -30,11 +30,11 @@ const Ticket = (): JSX.Element => {
               throw new Error(result.statusText)
             }
             const json = await result.json()
-            if (!json.id) {
+            if (!json?.ticket?.id) {
               console.error(json)
               throw new Error('Incorrect format returned')
             }
-            router.push(`/payment/${json.id}`)
+            router.push(`/payment/${json.ticket.id}`)
           } catch (e) {
             console.error(e)
             alert('Nastala chyba - prosim skuste znova')
@@ -79,11 +79,7 @@ const Ticket = (): JSX.Element => {
                 />
               </label>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              onClick={() => submitForm()}
-            >
+            <button type="submit" disabled={isSubmitting}>
               Submit
             </button>
           </Form>

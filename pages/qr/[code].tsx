@@ -133,6 +133,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const entry = await client.Ticket({ id: ctx.params.code })
   if (!entry?.tickets_by_pk?.id || !entry?.tickets_by_pk?.was_paid)
     return { notFound: true }
+  console.log(entry)
   return {
     props: { id: entry?.tickets_by_pk?.id },
   }

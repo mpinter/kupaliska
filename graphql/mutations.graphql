@@ -1,13 +1,77 @@
-mutation InsertTicket($phone: String = "", $email: String!, $persons: Int!) {
-  insert_tickets(objects: { phone: $phone, email: $email, persons: $persons }) {
-    returning {
-      id
+mutation InsertTicket(
+  $children: Int
+  $persons: Int!
+  $ticketType: String!
+  $userId: uuid!
+) {
+  insert_tickets_one(
+    object: {
+      children: $children
+      persons: $persons
+      ticket_type: $ticketType
+      user_id: $userId
     }
+  ) {
+    children
+    created_at
+    id
+    payment_reference
+    persons
+    ticket_type
+    updated_at
+    user_id
+    was_paid
+  }
+}
+
+mutation InsertUser($object: users_insert_input!) {
+  insert_users_one(object: $object) {
+    city
+    created_at
+    email
+    id
+    name
+    phone
+    psc
+    street
+    updated_at
   }
 }
 
 mutation PayForTicket($id: uuid!) {
   update_tickets_by_pk(pk_columns: { id: $id }, _set: { was_paid: true }) {
     was_paid
+  }
+}
+
+mutation InsertEntry($entryDate: date!, $ticketId: uuid!, $facility: String!) {
+  insert_entries_one(
+    object: {
+      facility: $facility
+      ticket_id: $ticketId
+      entry_date: $entryDate
+    }
+  ) {
+    created_at
+    entry_date
+    facility
+    id
+    left
+    ticket_id
+    updated_at
+  }
+}
+
+mutation UpdateEntry($id: uuid!, $left: Boolean!) {
+  update_entries(where: { id: { _eq: $id } }, _set: { left: $left }) {
+    returning {
+      created_at
+      entry_date
+      facility
+      id
+      left
+      ticket_id
+      updated_at
+    }
   }
 }

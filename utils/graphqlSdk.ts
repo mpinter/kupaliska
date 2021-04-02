@@ -90,9 +90,179 @@ export type Date_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['date']>>;
 };
 
+/** columns and relationships of "entries" */
+export type Entries = {
+  __typename?: 'entries';
+  created_at: Scalars['timestamptz'];
+  entry_date: Scalars['date'];
+  facility: Scalars['String'];
+  id: Scalars['uuid'];
+  left: Scalars['Boolean'];
+  ticket_id: Scalars['uuid'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "entries" */
+export type Entries_Aggregate = {
+  __typename?: 'entries_aggregate';
+  aggregate?: Maybe<Entries_Aggregate_Fields>;
+  nodes: Array<Entries>;
+};
+
+/** aggregate fields of "entries" */
+export type Entries_Aggregate_Fields = {
+  __typename?: 'entries_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Entries_Max_Fields>;
+  min?: Maybe<Entries_Min_Fields>;
+};
+
+
+/** aggregate fields of "entries" */
+export type Entries_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Entries_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "entries". All fields are combined with a logical 'AND'. */
+export type Entries_Bool_Exp = {
+  _and?: Maybe<Array<Entries_Bool_Exp>>;
+  _not?: Maybe<Entries_Bool_Exp>;
+  _or?: Maybe<Array<Entries_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  entry_date?: Maybe<Date_Comparison_Exp>;
+  facility?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  left?: Maybe<Boolean_Comparison_Exp>;
+  ticket_id?: Maybe<Uuid_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "entries" */
+export enum Entries_Constraint {
+  /** unique or primary key constraint */
+  EntriesPkey = 'entries_pkey'
+}
+
+/** input type for inserting data into table "entries" */
+export type Entries_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  entry_date?: Maybe<Scalars['date']>;
+  facility?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  left?: Maybe<Scalars['Boolean']>;
+  ticket_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Entries_Max_Fields = {
+  __typename?: 'entries_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  entry_date?: Maybe<Scalars['date']>;
+  facility?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  ticket_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Entries_Min_Fields = {
+  __typename?: 'entries_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  entry_date?: Maybe<Scalars['date']>;
+  facility?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  ticket_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "entries" */
+export type Entries_Mutation_Response = {
+  __typename?: 'entries_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Entries>;
+};
+
+/** on conflict condition type for table "entries" */
+export type Entries_On_Conflict = {
+  constraint: Entries_Constraint;
+  update_columns: Array<Entries_Update_Column>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "entries". */
+export type Entries_Order_By = {
+  created_at?: Maybe<Order_By>;
+  entry_date?: Maybe<Order_By>;
+  facility?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  left?: Maybe<Order_By>;
+  ticket_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: entries */
+export type Entries_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "entries" */
+export enum Entries_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  EntryDate = 'entry_date',
+  /** column name */
+  Facility = 'facility',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Left = 'left',
+  /** column name */
+  TicketId = 'ticket_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "entries" */
+export type Entries_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  entry_date?: Maybe<Scalars['date']>;
+  facility?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  left?: Maybe<Scalars['Boolean']>;
+  ticket_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** update columns of table "entries" */
+export enum Entries_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  EntryDate = 'entry_date',
+  /** column name */
+  Facility = 'facility',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Left = 'left',
+  /** column name */
+  TicketId = 'ticket_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete data from the table: "entries" */
+  delete_entries?: Maybe<Entries_Mutation_Response>;
+  /** delete single row from the table: "entries" */
+  delete_entries_by_pk?: Maybe<Entries>;
   /** delete data from the table: "tickets" */
   delete_tickets?: Maybe<Tickets_Mutation_Response>;
   /** delete single row from the table: "tickets" */
@@ -101,6 +271,10 @@ export type Mutation_Root = {
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
+  /** insert data into the table: "entries" */
+  insert_entries?: Maybe<Entries_Mutation_Response>;
+  /** insert a single row into the table: "entries" */
+  insert_entries_one?: Maybe<Entries>;
   /** insert data into the table: "tickets" */
   insert_tickets?: Maybe<Tickets_Mutation_Response>;
   /** insert a single row into the table: "tickets" */
@@ -109,6 +283,10 @@ export type Mutation_Root = {
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
+  /** update data of the table: "entries" */
+  update_entries?: Maybe<Entries_Mutation_Response>;
+  /** update single row of the table: "entries" */
+  update_entries_by_pk?: Maybe<Entries>;
   /** update data of the table: "tickets" */
   update_tickets?: Maybe<Tickets_Mutation_Response>;
   /** update single row of the table: "tickets" */
@@ -117,6 +295,18 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_EntriesArgs = {
+  where: Entries_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Entries_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -145,6 +335,20 @@ export type Mutation_RootDelete_Users_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_EntriesArgs = {
+  objects: Array<Entries_Insert_Input>;
+  on_conflict?: Maybe<Entries_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Entries_OneArgs = {
+  object: Entries_Insert_Input;
+  on_conflict?: Maybe<Entries_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_TicketsArgs = {
   objects: Array<Tickets_Insert_Input>;
   on_conflict?: Maybe<Tickets_On_Conflict>;
@@ -169,6 +373,20 @@ export type Mutation_RootInsert_UsersArgs = {
 export type Mutation_RootInsert_Users_OneArgs = {
   object: Users_Insert_Input;
   on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_EntriesArgs = {
+  _set?: Maybe<Entries_Set_Input>;
+  where: Entries_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Entries_By_PkArgs = {
+  _set?: Maybe<Entries_Set_Input>;
+  pk_columns: Entries_Pk_Columns_Input;
 };
 
 
@@ -219,6 +437,12 @@ export enum Order_By {
 
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "entries" */
+  entries: Array<Entries>;
+  /** fetch aggregated fields from the table: "entries" */
+  entries_aggregate: Entries_Aggregate;
+  /** fetch data from the table: "entries" using primary key columns */
+  entries_by_pk?: Maybe<Entries>;
   /** fetch data from the table: "tickets" */
   tickets: Array<Tickets>;
   /** fetch aggregated fields from the table: "tickets" */
@@ -231,6 +455,29 @@ export type Query_Root = {
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Query_RootEntriesArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Query_RootEntries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Query_RootEntries_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -281,6 +528,12 @@ export type Query_RootUsers_By_PkArgs = {
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "entries" */
+  entries: Array<Entries>;
+  /** fetch aggregated fields from the table: "entries" */
+  entries_aggregate: Entries_Aggregate;
+  /** fetch data from the table: "entries" using primary key columns */
+  entries_by_pk?: Maybe<Entries>;
   /** fetch data from the table: "tickets" */
   tickets: Array<Tickets>;
   /** fetch aggregated fields from the table: "tickets" */
@@ -293,6 +546,29 @@ export type Subscription_Root = {
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Subscription_RootEntriesArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Subscription_RootEntries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Subscription_RootEntries_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -344,18 +620,14 @@ export type Subscription_RootUsers_By_PkArgs = {
 /** columns and relationships of "tickets" */
 export type Tickets = {
   __typename?: 'tickets';
+  children?: Maybe<Scalars['Int']>;
   created_at: Scalars['timestamptz'];
-  email: Scalars['String'];
-  entries_left?: Maybe<Scalars['Int']>;
   id: Scalars['uuid'];
-  is_inside: Scalars['Boolean'];
-  last_date_used?: Maybe<Scalars['date']>;
   payment_reference?: Maybe<Scalars['String']>;
   persons: Scalars['Int'];
-  phone?: Maybe<Scalars['String']>;
   ticket_type: Scalars['String'];
   updated_at: Scalars['timestamptz'];
-  user_id?: Maybe<Scalars['uuid']>;
+  user_id: Scalars['uuid'];
   was_paid: Scalars['Boolean'];
 };
 
@@ -392,7 +664,7 @@ export type Tickets_Aggregate_FieldsCountArgs = {
 /** aggregate avg on columns */
 export type Tickets_Avg_Fields = {
   __typename?: 'tickets_avg_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
@@ -401,15 +673,11 @@ export type Tickets_Bool_Exp = {
   _and?: Maybe<Array<Tickets_Bool_Exp>>;
   _not?: Maybe<Tickets_Bool_Exp>;
   _or?: Maybe<Array<Tickets_Bool_Exp>>;
+  children?: Maybe<Int_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  email?: Maybe<String_Comparison_Exp>;
-  entries_left?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  is_inside?: Maybe<Boolean_Comparison_Exp>;
-  last_date_used?: Maybe<Date_Comparison_Exp>;
   payment_reference?: Maybe<String_Comparison_Exp>;
   persons?: Maybe<Int_Comparison_Exp>;
-  phone?: Maybe<String_Comparison_Exp>;
   ticket_type?: Maybe<String_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
@@ -424,21 +692,17 @@ export enum Tickets_Constraint {
 
 /** input type for incrementing numeric columns in table "tickets" */
 export type Tickets_Inc_Input = {
-  entries_left?: Maybe<Scalars['Int']>;
+  children?: Maybe<Scalars['Int']>;
   persons?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "tickets" */
 export type Tickets_Insert_Input = {
+  children?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  entries_left?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  is_inside?: Maybe<Scalars['Boolean']>;
-  last_date_used?: Maybe<Scalars['date']>;
   payment_reference?: Maybe<Scalars['String']>;
   persons?: Maybe<Scalars['Int']>;
-  phone?: Maybe<Scalars['String']>;
   ticket_type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -448,14 +712,11 @@ export type Tickets_Insert_Input = {
 /** aggregate max on columns */
 export type Tickets_Max_Fields = {
   __typename?: 'tickets_max_fields';
+  children?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  entries_left?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  last_date_used?: Maybe<Scalars['date']>;
   payment_reference?: Maybe<Scalars['String']>;
   persons?: Maybe<Scalars['Int']>;
-  phone?: Maybe<Scalars['String']>;
   ticket_type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -464,14 +725,11 @@ export type Tickets_Max_Fields = {
 /** aggregate min on columns */
 export type Tickets_Min_Fields = {
   __typename?: 'tickets_min_fields';
+  children?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  entries_left?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  last_date_used?: Maybe<Scalars['date']>;
   payment_reference?: Maybe<Scalars['String']>;
   persons?: Maybe<Scalars['Int']>;
-  phone?: Maybe<Scalars['String']>;
   ticket_type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -495,15 +753,11 @@ export type Tickets_On_Conflict = {
 
 /** Ordering options when selecting data from "tickets". */
 export type Tickets_Order_By = {
+  children?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
-  email?: Maybe<Order_By>;
-  entries_left?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  is_inside?: Maybe<Order_By>;
-  last_date_used?: Maybe<Order_By>;
   payment_reference?: Maybe<Order_By>;
   persons?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
   ticket_type?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
@@ -518,23 +772,15 @@ export type Tickets_Pk_Columns_Input = {
 /** select columns of table "tickets" */
 export enum Tickets_Select_Column {
   /** column name */
+  Children = 'children',
+  /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Email = 'email',
-  /** column name */
-  EntriesLeft = 'entries_left',
-  /** column name */
   Id = 'id',
-  /** column name */
-  IsInside = 'is_inside',
-  /** column name */
-  LastDateUsed = 'last_date_used',
   /** column name */
   PaymentReference = 'payment_reference',
   /** column name */
   Persons = 'persons',
-  /** column name */
-  Phone = 'phone',
   /** column name */
   TicketType = 'ticket_type',
   /** column name */
@@ -547,15 +793,11 @@ export enum Tickets_Select_Column {
 
 /** input type for updating data in table "tickets" */
 export type Tickets_Set_Input = {
+  children?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  entries_left?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  is_inside?: Maybe<Scalars['Boolean']>;
-  last_date_used?: Maybe<Scalars['date']>;
   payment_reference?: Maybe<Scalars['String']>;
   persons?: Maybe<Scalars['Int']>;
-  phone?: Maybe<Scalars['String']>;
   ticket_type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -565,51 +807,43 @@ export type Tickets_Set_Input = {
 /** aggregate stddev on columns */
 export type Tickets_Stddev_Fields = {
   __typename?: 'tickets_stddev_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Tickets_Stddev_Pop_Fields = {
   __typename?: 'tickets_stddev_pop_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Tickets_Stddev_Samp_Fields = {
   __typename?: 'tickets_stddev_samp_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate sum on columns */
 export type Tickets_Sum_Fields = {
   __typename?: 'tickets_sum_fields';
-  entries_left?: Maybe<Scalars['Int']>;
+  children?: Maybe<Scalars['Int']>;
   persons?: Maybe<Scalars['Int']>;
 };
 
 /** update columns of table "tickets" */
 export enum Tickets_Update_Column {
   /** column name */
+  Children = 'children',
+  /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Email = 'email',
-  /** column name */
-  EntriesLeft = 'entries_left',
-  /** column name */
   Id = 'id',
-  /** column name */
-  IsInside = 'is_inside',
-  /** column name */
-  LastDateUsed = 'last_date_used',
   /** column name */
   PaymentReference = 'payment_reference',
   /** column name */
   Persons = 'persons',
-  /** column name */
-  Phone = 'phone',
   /** column name */
   TicketType = 'ticket_type',
   /** column name */
@@ -623,21 +857,21 @@ export enum Tickets_Update_Column {
 /** aggregate var_pop on columns */
 export type Tickets_Var_Pop_Fields = {
   __typename?: 'tickets_var_pop_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate var_samp on columns */
 export type Tickets_Var_Samp_Fields = {
   __typename?: 'tickets_var_samp_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate variance on columns */
 export type Tickets_Variance_Fields = {
   __typename?: 'tickets_variance_fields';
-  entries_left?: Maybe<Scalars['Float']>;
+  children?: Maybe<Scalars['Float']>;
   persons?: Maybe<Scalars['Float']>;
 };
 
@@ -658,12 +892,14 @@ export type Timestamptz_Comparison_Exp = {
 /** columns and relationships of "users" */
 export type Users = {
   __typename?: 'users';
-  city: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
+  email: Scalars['String'];
   id: Scalars['uuid'];
-  name: Scalars['String'];
-  psc: Scalars['String'];
-  street: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  psc?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -696,8 +932,10 @@ export type Users_Bool_Exp = {
   _or?: Maybe<Array<Users_Bool_Exp>>;
   city?: Maybe<String_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
   psc?: Maybe<String_Comparison_Exp>;
   street?: Maybe<String_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
@@ -713,8 +951,10 @@ export enum Users_Constraint {
 export type Users_Insert_Input = {
   city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   psc?: Maybe<Scalars['String']>;
   street?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -725,8 +965,10 @@ export type Users_Max_Fields = {
   __typename?: 'users_max_fields';
   city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   psc?: Maybe<Scalars['String']>;
   street?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -737,8 +979,10 @@ export type Users_Min_Fields = {
   __typename?: 'users_min_fields';
   city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   psc?: Maybe<Scalars['String']>;
   street?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -764,8 +1008,10 @@ export type Users_On_Conflict = {
 export type Users_Order_By = {
   city?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
+  email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
   psc?: Maybe<Order_By>;
   street?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
@@ -783,9 +1029,13 @@ export enum Users_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Email = 'email',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  Phone = 'phone',
   /** column name */
   Psc = 'psc',
   /** column name */
@@ -798,8 +1048,10 @@ export enum Users_Select_Column {
 export type Users_Set_Input = {
   city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   psc?: Maybe<Scalars['String']>;
   street?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -812,9 +1064,13 @@ export enum Users_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Email = 'email',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  Phone = 'phone',
   /** column name */
   Psc = 'psc',
   /** column name */
@@ -838,20 +1094,31 @@ export type Uuid_Comparison_Exp = {
 };
 
 export type InsertTicketMutationVariables = Exact<{
-  phone?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
+  children?: Maybe<Scalars['Int']>;
   persons: Scalars['Int'];
+  ticketType: Scalars['String'];
+  userId: Scalars['uuid'];
 }>;
 
 
 export type InsertTicketMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_tickets?: Maybe<(
-    { __typename?: 'tickets_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'tickets' }
-      & Pick<Tickets, 'id'>
-    )> }
+  & { insert_tickets_one?: Maybe<(
+    { __typename?: 'tickets' }
+    & Pick<Tickets, 'children' | 'created_at' | 'id' | 'payment_reference' | 'persons' | 'ticket_type' | 'updated_at' | 'user_id' | 'was_paid'>
+  )> }
+);
+
+export type InsertUserMutationVariables = Exact<{
+  object: Users_Insert_Input;
+}>;
+
+
+export type InsertUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_users_one?: Maybe<(
+    { __typename?: 'users' }
+    & Pick<Users, 'city' | 'created_at' | 'email' | 'id' | 'name' | 'phone' | 'psc' | 'street' | 'updated_at'>
   )> }
 );
 
@@ -868,6 +1135,38 @@ export type PayForTicketMutation = (
   )> }
 );
 
+export type InsertEntryMutationVariables = Exact<{
+  entryDate: Scalars['date'];
+  ticketId: Scalars['uuid'];
+  facility: Scalars['String'];
+}>;
+
+
+export type InsertEntryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_entries_one?: Maybe<(
+    { __typename?: 'entries' }
+    & Pick<Entries, 'created_at' | 'entry_date' | 'facility' | 'id' | 'left' | 'ticket_id' | 'updated_at'>
+  )> }
+);
+
+export type UpdateEntryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  left: Scalars['Boolean'];
+}>;
+
+
+export type UpdateEntryMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_entries?: Maybe<(
+    { __typename?: 'entries_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'entries' }
+      & Pick<Entries, 'created_at' | 'entry_date' | 'facility' | 'id' | 'left' | 'ticket_id' | 'updated_at'>
+    )> }
+  )> }
+);
+
 export type TicketsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -875,7 +1174,7 @@ export type TicketsQuery = (
   { __typename?: 'query_root' }
   & { tickets: Array<(
     { __typename?: 'tickets' }
-    & Pick<Tickets, 'created_at' | 'entries_left' | 'id' | 'is_inside' | 'last_date_used' | 'persons' | 'ticket_type' | 'updated_at'>
+    & Pick<Tickets, 'children' | 'created_at' | 'id' | 'payment_reference' | 'persons' | 'ticket_type' | 'updated_at' | 'user_id' | 'was_paid'>
   )> }
 );
 
@@ -888,17 +1187,53 @@ export type TicketQuery = (
   { __typename?: 'query_root' }
   & { tickets_by_pk?: Maybe<(
     { __typename?: 'tickets' }
-    & Pick<Tickets, 'created_at' | 'email' | 'entries_left' | 'id' | 'is_inside' | 'last_date_used' | 'payment_reference' | 'persons' | 'phone' | 'ticket_type' | 'updated_at' | 'user_id' | 'was_paid'>
+    & Pick<Tickets, 'children' | 'created_at' | 'id' | 'payment_reference' | 'persons' | 'ticket_type' | 'updated_at' | 'user_id' | 'was_paid'>
+  )> }
+);
+
+export type EntriesForTicketQueryVariables = Exact<{
+  ticketId: Scalars['uuid'];
+}>;
+
+
+export type EntriesForTicketQuery = (
+  { __typename?: 'query_root' }
+  & { entries: Array<(
+    { __typename?: 'entries' }
+    & Pick<Entries, 'updated_at' | 'ticket_id' | 'left' | 'id' | 'facility' | 'entry_date' | 'created_at'>
   )> }
 );
 
 
 export const InsertTicketDocument = gql`
-    mutation InsertTicket($phone: String = "", $email: String!, $persons: Int!) {
-  insert_tickets(objects: {phone: $phone, email: $email, persons: $persons}) {
-    returning {
-      id
-    }
+    mutation InsertTicket($children: Int, $persons: Int!, $ticketType: String!, $userId: uuid!) {
+  insert_tickets_one(
+    object: {children: $children, persons: $persons, ticket_type: $ticketType, user_id: $userId}
+  ) {
+    children
+    created_at
+    id
+    payment_reference
+    persons
+    ticket_type
+    updated_at
+    user_id
+    was_paid
+  }
+}
+    `;
+export const InsertUserDocument = gql`
+    mutation InsertUser($object: users_insert_input!) {
+  insert_users_one(object: $object) {
+    city
+    created_at
+    email
+    id
+    name
+    phone
+    psc
+    street
+    updated_at
   }
 }
     `;
@@ -909,36 +1244,76 @@ export const PayForTicketDocument = gql`
   }
 }
     `;
+export const InsertEntryDocument = gql`
+    mutation InsertEntry($entryDate: date!, $ticketId: uuid!, $facility: String!) {
+  insert_entries_one(
+    object: {facility: $facility, ticket_id: $ticketId, entry_date: $entryDate}
+  ) {
+    created_at
+    entry_date
+    facility
+    id
+    left
+    ticket_id
+    updated_at
+  }
+}
+    `;
+export const UpdateEntryDocument = gql`
+    mutation UpdateEntry($id: uuid!, $left: Boolean!) {
+  update_entries(where: {id: {_eq: $id}}, _set: {left: $left}) {
+    returning {
+      created_at
+      entry_date
+      facility
+      id
+      left
+      ticket_id
+      updated_at
+    }
+  }
+}
+    `;
 export const TicketsDocument = gql`
     query Tickets {
   tickets {
+    children
     created_at
-    entries_left
     id
-    is_inside
-    last_date_used
+    payment_reference
     persons
     ticket_type
     updated_at
+    user_id
+    was_paid
   }
 }
     `;
 export const TicketDocument = gql`
     query Ticket($id: uuid!) {
   tickets_by_pk(id: $id) {
+    children
     created_at
-    email
-    entries_left
     id
-    is_inside
-    last_date_used
     payment_reference
     persons
-    phone
     ticket_type
     updated_at
     user_id
     was_paid
+  }
+}
+    `;
+export const EntriesForTicketDocument = gql`
+    query EntriesForTicket($ticketId: uuid!) {
+  entries(where: {ticket_id: {_eq: $ticketId}}) {
+    updated_at
+    ticket_id
+    left
+    id
+    facility
+    entry_date
+    created_at
   }
 }
     `;
@@ -952,14 +1327,26 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     InsertTicket(variables: InsertTicketMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<InsertTicketMutation> {
       return withWrapper(() => client.request<InsertTicketMutation>(InsertTicketDocument, variables, requestHeaders));
     },
+    InsertUser(variables: InsertUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<InsertUserMutation> {
+      return withWrapper(() => client.request<InsertUserMutation>(InsertUserDocument, variables, requestHeaders));
+    },
     PayForTicket(variables: PayForTicketMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PayForTicketMutation> {
       return withWrapper(() => client.request<PayForTicketMutation>(PayForTicketDocument, variables, requestHeaders));
+    },
+    InsertEntry(variables: InsertEntryMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<InsertEntryMutation> {
+      return withWrapper(() => client.request<InsertEntryMutation>(InsertEntryDocument, variables, requestHeaders));
+    },
+    UpdateEntry(variables: UpdateEntryMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateEntryMutation> {
+      return withWrapper(() => client.request<UpdateEntryMutation>(UpdateEntryDocument, variables, requestHeaders));
     },
     Tickets(variables?: TicketsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TicketsQuery> {
       return withWrapper(() => client.request<TicketsQuery>(TicketsDocument, variables, requestHeaders));
     },
     Ticket(variables: TicketQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TicketQuery> {
       return withWrapper(() => client.request<TicketQuery>(TicketDocument, variables, requestHeaders));
+    },
+    EntriesForTicket(variables: EntriesForTicketQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<EntriesForTicketQuery> {
+      return withWrapper(() => client.request<EntriesForTicketQuery>(EntriesForTicketDocument, variables, requestHeaders));
     }
   };
 }

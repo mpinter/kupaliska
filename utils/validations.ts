@@ -46,3 +46,11 @@ export const seasonSchema = yup
   })
   .noUnknown()
   .concat(baseFormSchema)
+
+export const entryRequest = yup
+  .object()
+  .shape({
+    id: yup.string().required(),
+    facility: yup.string().required(), // TODO one-of enum
+  })
+  .noUnknown()
