@@ -6,13 +6,16 @@ export const useSubmitTicket = (endpoint) => {
   const submit = useCallback(
     async (values) => {
       try {
-        const result = await fetch(`/api/${endpoint}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: await JSON.stringify(values),
-        })
+        const result = await fetch(
+          `${window.location.origin}/api/${endpoint}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: await JSON.stringify(values),
+          }
+        )
         if (!result.ok) {
           throw new Error(result.statusText)
         }

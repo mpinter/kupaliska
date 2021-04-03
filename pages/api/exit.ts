@@ -4,10 +4,17 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { client } from '../../utils/gql'
 import _ from 'lodash'
 import { entryRequest } from '../../utils/validations'
+import NextCors from 'nextjs-cors'
 
 // TODO should be linked to facility, currently isn't
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    await NextCors(req, res, {
+      // Options
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      origin: '*',
+      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    })
     if (req.method !== 'POST') {
       return res.status(400).json({})
     }

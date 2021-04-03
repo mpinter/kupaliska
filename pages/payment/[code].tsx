@@ -9,7 +9,10 @@ export const Qr = ({ id }): JSX.Element => {
   const payAndNavigate = useCallback(async () => {
     setLoading(true)
     try {
-      const result = await fetch(`/api/payment/${id}`, { method: 'POST' })
+      const result = await fetch(
+        `${window.location.origin}/api/payment/${id}`,
+        { method: 'POST' }
+      )
       if (!result.ok) throw new Error(result.statusText)
       router.push(`/qr/${id}`)
     } catch (e) {
