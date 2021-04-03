@@ -4,7 +4,7 @@ import QRCode from 'react-qr-code'
 import React, { useRef } from 'react'
 import dynamic from 'next/dynamic'
 
-const ReactToPdf = dynamic(() => import('react-to-pdf'), { ssr: false })
+const ReactToPdf: any = dynamic(() => import('react-to-pdf'), { ssr: false })
 
 export const Qr = ({ id }): JSX.Element => {
   const ref = useRef()
