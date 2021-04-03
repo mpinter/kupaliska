@@ -29,6 +29,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "@js-joda/core": "^3.2.0",
+    "classnames": "^2.3.1",
     "contentful": "^8.1.7",
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
@@ -45,6 +46,7 @@
     "react": "^16.13.1",
     "react-admin": "^3.14.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^4.2.0",
     "react-loading": "^2.0.3",
     "react-qr-code": "^1.1.1",
     "react-to-pdf": "^0.0.13",

@@ -18,7 +18,11 @@ export const Qr = ({ id }): JSX.Element => {
           mozete si ho stiahnut.
         </p>
         <ReactToPdf targetRef={ref} filename="qr-kupalisko.pdf">
-          {({ toPdf }) => <button onClick={toPdf}>Stiahnut</button>}
+          {({ toPdf }) => (
+            <button onClick={toPdf} className="button">
+              Stiahnut
+            </button>
+          )}
         </ReactToPdf>
 
         <div className="card" ref={ref} style={{ width: 256, height: 256 }}>

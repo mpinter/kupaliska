@@ -6,19 +6,19 @@ export const baseFormSchema = yup
     email: yup
       .string()
       .ensure()
-      .email('error-wrong-email-format')
-      .required('error-missing-email'),
+      .email('Chybajuca alebo nespravna hodnota')
+      .required('Chybajuca alebo nespravna hodnota'),
     phone: yup
       .string()
       .ensure()
-      .min(13, 'error-missing-phone')
-      .required('error-missing-phone'),
+      .min(13, 'Chybajuca alebo nespravna hodnota')
+      .required('Chybajuca alebo nespravna hodnota'),
     consent: yup
       .string()
       .ensure()
       .required()
       .default('false')
-      .oneOf(['true'], 'error-missing-consent'),
+      .oneOf(['true'], 'Chybajuca alebo nespravna hodnota'),
   })
   .noUnknown()
 
@@ -33,16 +33,22 @@ export const oneDaySchema = yup
 export const seasonSchema = yup
   .object()
   .shape({
-    name: yup.string().ensure().required('error-missing-name'),
-    street: yup.string().ensure().required('error-missing-name'),
-    city: yup.string().ensure().required('error-missing-name'),
+    name: yup.string().ensure().required('Chybajuca alebo nespravna hodnota'),
+    street: yup.string().ensure().required('Chybajuca alebo nespravna hodnota'),
+    city: yup.string().ensure().required('Chybajuca alebo nespravna hodnota'),
+    children: yup
+      .string()
+      .ensure()
+      .required()
+      .default('false')
+      .oneOf(['true'], 'Chybajuca alebo nespravna hodnota'),
     psc: yup
       .string()
       .ensure()
-      .min(5, 'error-missing-psc')
-      .max(5, 'err')
-      .matches(/^[^0-9]+$/, 'err')
-      .required('error-missing-psc'),
+      .min(5, 'Chybajuca alebo nespravna hodnota')
+      .max(5, 'Chybajuca alebo nespravna hodnota')
+      .matches(/^[0-9]+$/, 'Chybajuca alebo nespravna hodnota')
+      .required('Chybajuca alebo nespravna hodnota'),
   })
   .noUnknown()
   .concat(baseFormSchema)
